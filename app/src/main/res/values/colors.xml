@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="BROWN">#006663</color>
+    <color name="Aqua">#10c45e</color>
+    <color name="blue">#06769c</color>
+    <color name="purple">#8a0b8f</color>
+    <color name="pureblue">#13bbf2</color>
+    <color name="yellow">#7fc410</color>
+    <color name="grey">#323835</color>
+    <color name="pink">#eb4034</color>
+    <color name="lightblue">#cbe6f7</color>
+    <color name="Redwhite">#f5b8bf</color>
+    <color name="Darkblue">#010930</color>
+    <color name="violet">#c20e08</color>
+    <color name="whiteblue">#dcf2f5</color>
+    <color name="yellowcard">#cbd904</color>
+    <color name="bluecard">#22b391</color>
+    <color name="redcard">#e06363</color>
+    <color name="purplecard">#7d1458</color>
+    <color name="lightgreen">#a3f74f</color>
+    <color name="plantgreen">#008000</color>
+    <color name="green">#009664</color>
+    <color name="sand">#f87060</color>
+    <color name="DarkBlue">#102542</color>
+    <color name="greenwhite">#10c6b0</color>
+    <color name="gray">#928dab</color>
+    <color name="steelgrey">#1f1c2c</color>
+</resources>

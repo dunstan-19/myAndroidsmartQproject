@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_card1"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_margin="5dp"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/userName"
+        android:fontFamily="serif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Name"
+        android:textColor="@color/whiteblue"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/userPosition"
+        android:layout_width="wrap_content"
+        android:fontFamily="serif"
+        android:textColor="@color/whiteblue"
+        android:layout_height="wrap_content"
+        android:text="Position: 1"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/userTicketNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:textColor="@color/whiteblue"
+        android:text="Ticket Number: 123456"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/steppedAwayText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:fontFamily="serif"
+        android:textSize="16sp"
+        android:visibility="gone"
+        android:layout_marginTop="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="13dp">
+
+        <Button
+            android:id="@+id/servedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="serif"
+            android:text="Serve"
+            android:backgroundTint="@color/green" />
+
+        <Button
+            android:id="@+id/removeButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Remove"
+            android:fontFamily="serif"
+            android:backgroundTint="@color/violet" />
+    </LinearLayout>
+</LinearLayout>

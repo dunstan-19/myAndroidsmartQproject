@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/sand"
+    android:scrollbars="vertical"
+    android:fadeScrollbars="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/DarkBlue"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/ananda"
+            android:text="SmartQ"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="10dp" />
+
+<ImageView
+    android:layout_width="59dp"
+    android:layout_height="32dp"
+    android:src="@drawable/line"
+    android:layout_marginTop="-32dp"
+    android:layout_marginStart="5dp"
+    />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/DarkBlue"
+            android:layout_marginTop="30dp"
+            android:fontFamily="serif"
+            android:text="How to Use the App"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:paddingBottom="10dp" />
+        <ImageView
+            android:layout_width="199dp"
+            android:layout_height="32dp"
+            android:src="@drawable/line"
+            android:layout_marginTop="-28dp"
+            android:layout_marginStart="105dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. Sign up or log in.\n2. Select a service from the list.\n3. Join the queue.\n4. View your queue position in real time.\n5. Leave the queue when done."
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:textColor="@color/whiteblue"
+            android:fontFamily="sans-serif-condensed" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/DarkBlue"
+            android:layout_marginTop="30dp"
+            android:fontFamily="serif"
+            android:text="Frequently Asked Questions"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:paddingBottom="10dp" />
+        <ImageView
+            android:layout_width="299dp"
+            android:layout_height="32dp"
+            android:src="@drawable/line"
+            android:layout_marginTop="-28dp"
+            android:layout_marginStart="55dp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/faqRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:fadeScrollbars="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/DarkBlue"
+            android:layout_marginTop="40dp"
+            android:fontFamily="serif"
+            android:text="Contact &amp; Support"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:paddingBottom="10dp" />
+        <ImageView
+            android:layout_width="199dp"
+            android:layout_height="32dp"
+            android:src="@drawable/line"
+            android:layout_marginTop="-28dp"
+            android:layout_marginStart="105dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email Support: smartqsupport@yahoo.com"
+                android:textSize="17sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone Number: +2541 6534 9087"
+                android:textSize="17sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="WhatsApp: +2547 9876 5431"
+                android:textSize="17sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

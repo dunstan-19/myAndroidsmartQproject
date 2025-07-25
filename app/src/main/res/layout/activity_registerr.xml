@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/singup"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:context=".RegisterrActivity">
+
+    <TextView
+        android:id="@+id/tvregister1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/merienda"
+        android:gravity="center"
+        android:text="Here is your First"
+        android:textColor="@color/whiteblue"
+        android:textSize="23sp"/>
+
+    <TextView
+        android:id="@+id/tvregister2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:fontFamily="@font/merienda"
+        android:gravity="center"
+        android:text="Step with us!"
+        android:textColor="@color/whiteblue"
+        android:textSize="23sp"/>
+
+    <TextView
+        android:id="@+id/tvusername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="160dp"
+        android:fontFamily="@font/merienda"
+        android:text="Username:"
+        android:textColor="@color/bluecard"
+        android:textSize="16sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:gravity="center"
+            android:hint=" Enter your Username"
+            android:inputType="text"
+            android:paddingVertical="9dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"/>
+        <ImageView
+            android:id="@+id/ivperson"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/baseline_personwhite"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvemail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/merienda"
+        android:text="E-mail:"
+        android:textColor="@color/bluecard"
+        android:textSize="16sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/etemail"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:gravity="center"
+            android:hint=" Enter your E-mail"
+            android:inputType="textEmailAddress"
+            android:paddingVertical="9dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"/>
+        <ImageView
+            android:id="@+id/ivShowemail"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/baseline_emailwhite"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/merienda"
+        android:text="Password:"
+        android:textColor="@color/bluecard"
+        android:textSize="16sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:gravity="center"
+            android:hint=" Enter your Password"
+            android:inputType="textPassword"
+            android:paddingVertical="9dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"/>
+        <ImageView
+            android:id="@+id/ivShowkey"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/baseline_keywhite"/>
+        <ImageView
+            android:id="@+id/ivTogglePassword"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="60dp"
+            android:contentDescription="Toggle password visibility"
+            android:src="@drawable/eyeclosed"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvcpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/merienda"
+        android:text="Confirm Password:"
+        android:textColor="@color/bluecard"
+        android:textSize="16sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/etCPassword"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:gravity="center"
+            android:hint=" Confirm Password"
+            android:inputType="textPassword"
+            android:paddingVertical="9dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"/>
+        <ImageView
+            android:id="@+id/ivShowkeyy"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/baseline_keywhite"/>
+        <ImageView
+            android:id="@+id/ivToggleCPassword"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="60dp"
+            android:contentDescription="Toggle password visibility"
+            android:src="@drawable/eyeclosed"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnSignup"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40sp"
+        android:backgroundTint="@color/bluecard"
+        android:fontFamily="serif"
+        android:text="Sign Up"
+        android:textColor="@color/black"
+        android:textSize="19sp"/>
+
+    <TextView
+        android:id="@+id/tvback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="90dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="serif"
+        android:text="Back to Log in."
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="8mm"/>
+</LinearLayout>

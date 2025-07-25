@@ -1,0 +1,167 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:gravity="center"
+    >
+    <TextView
+        android:id="@+id/appname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/DarkBlue"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/ananda"
+        android:text="SmartQ"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="10dp"
+      />
+
+    <ImageView
+        android:id="@+id/line"
+        android:layout_width="59dp"
+        android:layout_height="32dp"
+        android:src="@drawable/line"
+        android:layout_marginTop="-33dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appname" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgprofile"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/baseline_account_circle_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line"
+        app:shapeAppearanceOverlay="@style/CircleImageView"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabChangePhoto"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="-50dp"
+        android:layout_gravity="end"
+        android:src="@drawable/baseline_camera_alt_24"
+        tools:layout_editor_absoluteX="239dp"
+        tools:layout_editor_absoluteY="148dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgprofile" />
+    />
+
+    <EditText
+        android:id="@+id/edtusername"
+        android:layout_width="356dp"
+        android:layout_height="52dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginBottom="-30dp"
+        android:fontFamily="serif"
+        android:layout_marginStart="20dp"
+        android:hint="Username"
+        android:gravity="center"
+        android:textColor="@color/BROWN"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="203dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fabChangePhoto" />
+    />
+    <ImageView
+        android:id="@+id/line1"
+        android:layout_width="359dp"
+        android:layout_height="32dp"
+        android:src="@drawable/line"
+        android:layout_marginTop="-26dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtusername" />
+
+    <EditText
+        android:id="@+id/edtemail"
+        android:layout_width="356dp"
+        android:layout_height="43dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/linetwo"
+        android:fontFamily="serif"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/BROWN"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="273dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtusername" />
+    />
+
+    <EditText
+        android:id="@+id/edtfullName"
+        android:layout_width="360dp"
+        android:layout_height="46dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/linetwo"
+        android:fontFamily="serif"
+        android:hint="Full Name"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/BROWN"
+        android:textColorHint="@color/grey"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="342dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtemail" />
+    />
+
+    <EditText
+        android:id="@+id/edtphoneNumber"
+        android:layout_width="363dp"
+        android:layout_height="43dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/linetwo"
+        android:fontFamily="serif"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        android:textColor="@color/BROWN"
+        android:textColorHint="@color/grey"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtfullName" />
+    />
+
+    <Button
+        android:id="@+id/BtnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="Save Changes"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="133dp"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="510dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtphoneNumber" />
+    />
+
+    <Button
+        android:id="@+id/BtnSignOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/violet"
+        android:fontFamily="serif"
+        android:text="Sign Out"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="153dp"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteY="573dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BtnSave" />
+    />
+</androidx.constraintlayout.widget.ConstraintLayout>

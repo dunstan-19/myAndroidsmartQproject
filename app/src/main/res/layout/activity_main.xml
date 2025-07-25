@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/green"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/merienda"
+        android:text="Alraedy have an"
+        android:textColor="@color/black"
+        android:textSize="23sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/merienda"
+        android:text="Account?"
+        android:textColor="@color/black"
+        android:textSize="23sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/merienda"
+        android:gravity="start"
+        android:text="Email:"
+        android:textColor="@color/greenwhite"
+        android:textSize="17sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/etemail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:hint="Email"
+            android:inputType="text"
+            android:paddingVertical="14dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/BROWN"
+            android:textSize="13sp"/>
+        <ImageView
+            android:id="@+id/ivShowemail"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/baseline_emailwhite"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:fontFamily="@font/merienda"
+        android:gravity="start"
+        android:text="Password:"
+        android:textColor="@color/greenwhite"
+        android:textSize="17sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingVertical="14dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/BROWN"
+            android:textSize="13sp"/>
+        <ImageView
+            android:id="@+id/ivShowkey"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/baseline_keywhite"/>
+        <ImageView
+            android:id="@+id/ivTogglePassword"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:contentDescription="Toggle password visibility"
+            android:src="@drawable/eyeclosed"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Forgot Password?"
+        android:textColor="@color/black"
+        android:textSize="16sp"/>
+
+    <Button
+        android:id="@+id/btnlogin"
+        android:layout_width="160sp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/greenwhite"
+        android:fontFamily="serif"
+        android:text="Login"
+        android:textColor="@color/black"
+        android:textSize="16sp"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5mm"/>
+
+    <TextView
+        android:id="@+id/tvsign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="New User? |Register here."
+        android:textColor="@color/blue"
+        android:textSize="19sp"
+        android:textStyle="italic"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lLoading"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="gone"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loader"/>
+</LinearLayout>

@@ -1,0 +1,171 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/Redwhite">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:title="Admin Dashboard"
+            app:titleTextColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/violet" />
+        <ImageView
+            android:id="@+id/reporticon"
+            android:layout_width="27dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/reportform"
+            android:layout_height="27dp" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/departmentNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Department Name"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/BROWN" />
+    <LinearLayout
+        android:layout_marginStart="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginEnd="10dp">
+            <ImageView
+                android:id="@+id/closeSearchIcon"
+                android:layout_width="30dp"
+                android:visibility="gone"
+                android:layout_height="30dp"
+                android:src="@drawable/outline_cancel_24"
+                android:layout_marginEnd="20dp"
+                android:contentDescription="Close search" />
+            <EditText
+                android:id="@+id/searchInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/BROWN"
+                android:gravity="center"
+                android:textSize="10dp"
+                android:hint="Search User"
+                android:padding="14dp" />
+            <ImageView
+                android:id="@+id/click"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="30dp"
+                android:layout_height="50dp"
+                android:src="@drawable/baseline_person_search_24"
+                />
+        </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginStart="50dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/baseline_person_pin_24"/>
+    <TextView
+        android:id="@+id/userCountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 users in queue"
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:fontFamily="@font/merienda"
+        android:textColor="@color/black"
+        android:layout_marginTop="65dp" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="47dp"
+            android:layout_height="45dp"
+            android:src="@drawable/baseline_more_time_24" />
+
+        <TextView
+        android:id="@+id/peakHoursTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loading peak hours..."
+        android:layout_gravity="center"
+        android:textSize="17sp"
+            android:fontFamily="@font/merienda"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/queueStatusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Queue is currently open"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:textColor="#000000"
+        android:layout_marginBottom="20dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/openQueueButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open Queue"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/bluecard"
+            android:textColor="#FFFFFF"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp" />
+        <Button
+            android:id="@+id/closeQueueButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Close Queue"
+            android:layout_gravity="center"
+            android:backgroundTint="#F44336"
+            android:textColor="#FFFFFF"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/noUsersTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No user in the queue"
+        android:textSize="22sp"
+        android:textColor="@color/blue"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/usersRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp" />
+</LinearLayout>
