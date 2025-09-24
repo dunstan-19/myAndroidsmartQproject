@@ -33,7 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends BaseActivity {
     private EditText edtfullName, edtusername, edtemail, edtphoneNumber;
     private ShapeableImageView imgprofile;
     private FloatingActionButton fabChangePhoto;

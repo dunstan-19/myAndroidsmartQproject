@@ -9,11 +9,17 @@
         android:id="@+id/help"
         android:icon="@drawable/baseline_help_outline_24"
     android:title="Help" />
-
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="Settings" />
     <item
         android:id="@+id/logout"
         android:icon="@drawable/baseline_logout_24"
     android:title="Logout" />
 
-
+    <item
+        android:id="@+id/notification"
+        android:icon="@drawable/baseline_circle_notifications_24"
+        android:title="Notifications" />
 </menu>

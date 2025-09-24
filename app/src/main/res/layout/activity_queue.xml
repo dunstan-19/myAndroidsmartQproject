@@ -5,14 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/whiteblue"
+    android:background="@color/bg_blue"
     tools:context=".QueueActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/whiteblue"
+        android:background="@color/bg_blue"
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
@@ -28,7 +28,7 @@
                 android:layout_marginTop="10sp"
                 android:fontFamily="@font/ananda"
                 android:text="@string/app_name"
-                android:textColor="@color/black"
+                android:textColor="@color/whiteblue"
                 android:textSize="23sp" />
 
             <ImageView
@@ -63,12 +63,12 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/merienda"
         android:textAlignment="center"
-        android:textColor="@color/BROWN"
+        android:textColor="@color/emerald"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:text="Hello, Dunstan! You have joined the queue." />
+        tools:text="@string/hello_join_queue" />
 
     <TextView
         android:id="@+id/ticketNumberTextView"
@@ -77,8 +77,8 @@
         android:layout_marginStart="136dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/merienda"
-        android:text="Your Ticket Number is"
-        android:textColor="@color/blue"
+        android:text="@string/ticket_number"
+        android:textColor="@color/emerald"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,8 +91,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/alcemodemo"
-        android:text="Current Queue (Loading...)"
-        android:textColor="@color/black"
+        android:text="@string/current_queue"
+        android:textColor="@color/gray"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,7 +105,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="26dp"
         android:fontFamily="@font/merienda"
-        android:text="Empty Queue"
+        android:text="@string/empty_queue"
         android:textColor="@color/blue"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,6 +126,7 @@
             android:id="@+id/QueueContainer"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
+            android:background="@drawable/card_blue_corner"
             android:layout_marginTop="20dp"
             android:orientation="horizontal" />
     </HorizontalScrollView>
@@ -139,7 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Join Queue"
+        android:text="@string/join_queue"
         />
 
     <Button
@@ -148,7 +149,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/violet"
-        android:text="Leave Queue"
+        android:text="@string/leave_queue"
         />
     </RelativeLayout>
 <RelativeLayout
@@ -162,8 +163,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:backgroundTint="@color/bluecard"
-        android:text="Step Away"
+        android:backgroundTint="@color/emerald"
+        android:text="@string/step_away"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -174,8 +175,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:backgroundTint="@color/green"
-        android:text="I'm Back"
+        android:backgroundTint="@color/emerald"
+        android:text="@string/im_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StepAwayButton" />
@@ -187,8 +188,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/alcemodemo"
-        android:text="Estimated Waiting Time: "
-        android:textColor="@color/blue"
+        android:text="@string/estimated_waiting_time"
+        android:textColor="@color/emerald"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -212,8 +213,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="24dp"
-        android:background="@drawable/input_bg"
+        android:background="@color/whiteblue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lLoading"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_navv_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,6 @@ import java.util.Locale;
 
 public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder> {
     private List<Report> reportList;
-
     public ReportAdapter(List<Report> reportList) {
         this.reportList = reportList;
     }

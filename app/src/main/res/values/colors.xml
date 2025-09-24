@@ -7,7 +7,6 @@
     <color name="blue">#06769c</color>
     <color name="purple">#8a0b8f</color>
     <color name="pureblue">#13bbf2</color>
-    <color name="yellow">#7fc410</color>
     <color name="grey">#323835</color>
     <color name="pink">#eb4034</color>
     <color name="lightblue">#cbe6f7</color>
@@ -25,6 +24,10 @@
     <color name="sand">#f87060</color>
     <color name="DarkBlue">#102542</color>
     <color name="greenwhite">#10c6b0</color>
+    <color name="lightyellow">#f8ffe5</color>
+    <color name="emerald">#06d6a0</color>
+    <color name="bg_blue">#0c1a43</color>
+    <color name="card_blue">#12275a</color>
     <color name="gray">#928dab</color>
     <color name="steelgrey">#1f1c2c</color>
 </resources>

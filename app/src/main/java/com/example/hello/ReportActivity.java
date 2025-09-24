@@ -3,9 +3,13 @@ package com.example.hello;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -15,6 +19,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,8 +31,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,12 +41,16 @@ import java.util.List;
 import java.util.Locale;
 
 public class ReportActivity extends AppCompatActivity {
+    private static final int STORAGE_PERMISSION_CODE = 1001;
+    private static final int MANAGE_STORAGE_PERMISSION_CODE = 1002;
+
     private RecyclerView reportRecyclerView;
     private ReportAdapter reportAdapter;
     private DatabaseReference reportsRef;
     private String department;
     private TextView noReportsTextView, departmentReportTitle;
     private Button clearReportsButton, downloadReportsButton;
+    private List<Report> currentReportList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +63,7 @@ public class ReportActivity extends AppCompatActivity {
         department = getIntent().getStringExtra("department");
         if (department == null || department.isEmpty()) {
             Toast.makeText(this, "Department not found", Toast.LENGTH_SHORT).show();
-            finish(); // Close the activity if the department is missing
+            finish();
             return;
         }
 
@@ -79,24 +90,22 @@ public class ReportActivity extends AppCompatActivity {
         clearReportsButton.setOnClickListener(v -> showClearReportsConfirmationDialog());
 
         // Handle "Download Reports" button click
-        downloadReportsButton.setOnClickListener(v -> downloadReports());
+        downloadReportsButton.setOnClickListener(v -> checkAndRequestPermissions());
     }
 
     private void fetchReports() {
-        // Query reports for the specific department
         reportsRef.orderByChild("department").equalTo(department).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<Report> reportList = new ArrayList<>();
+                currentReportList.clear();
                 for (DataSnapshot reportSnapshot : snapshot.getChildren()) {
                     Report report = reportSnapshot.getValue(Report.class);
                     if (report != null) {
-                        reportList.add(report);
+                        currentReportList.add(report);
                     }
                 }
 
-                // Update UI based on report list size
-                if (reportList.isEmpty()) {
+                if (currentReportList.isEmpty()) {
                     noReportsTextView.setVisibility(View.VISIBLE);
                     reportRecyclerView.setVisibility(View.GONE);
                 } else {
@@ -104,8 +113,7 @@ public class ReportActivity extends AppCompatActivity {
                     reportRecyclerView.setVisibility(View.VISIBLE);
                 }
 
-                // Set up the adapter
-                reportAdapter = new ReportAdapter(reportList);
+                reportAdapter = new ReportAdapter(currentReportList);
                 reportRecyclerView.setAdapter(reportAdapter);
             }
 
@@ -117,9 +125,6 @@ public class ReportActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Shows a confirmation dialog to clear all reports.
-     */
     private void showClearReportsConfirmationDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("Clear All Reports")
@@ -129,18 +134,14 @@ public class ReportActivity extends AppCompatActivity {
                 .show();
     }
 
-    /**
-     * Clears all reports for the current department.
-     */
     private void clearAllReports() {
         reportsRef.orderByChild("department").equalTo(department).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot reportSnapshot : snapshot.getChildren()) {
-                    reportSnapshot.getRef().removeValue(); // Remove each report
+                    reportSnapshot.getRef().removeValue();
                 }
                 Toast.makeText(ReportActivity.this, "All reports cleared.", Toast.LENGTH_SHORT).show();
-                fetchReports(); // Refresh the report list
             }
 
             @Override
@@ -151,103 +152,146 @@ public class ReportActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Downloads the reports as a CSV file.
-     */
-    private void downloadReports() {
-        reportsRef.orderByChild("department").equalTo(department).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<Report> reportList = new ArrayList<>();
-                for (DataSnapshot reportSnapshot : snapshot.getChildren()) {
-                    Report report = reportSnapshot.getValue(Report.class);
-                    if (report != null) {
-                        reportList.add(report);
-                    }
-                }
-
-                if (reportList.isEmpty()) {
-                    Toast.makeText(ReportActivity.this, "No reports to download.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                // Generate CSV file
-                File csvFile = generateCsvFile(reportList);
-                if (csvFile != null) {
-                    // Trigger the download
-                    triggerDownload(csvFile);
-                } else {
-                    Toast.makeText(ReportActivity.this, "Failed to generate report file.", Toast.LENGTH_SHORT).show();
-                }
+    private void checkAndRequestPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            // Android 11+ requires MANAGE_EXTERNAL_STORAGE permission
+            if (Environment.isExternalStorageManager()) {
+                downloadReports();
+            } else {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                Uri uri = Uri.fromParts("package", getPackageName(), null);
+                intent.setData(uri);
+                startActivityForResult(intent, MANAGE_STORAGE_PERMISSION_CODE);
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("DownloadReports", "Error fetching reports: " + error.getMessage());
-                Toast.makeText(ReportActivity.this, "Error fetching reports", Toast.LENGTH_SHORT).show();
+        } else {
+            // For older versions, request WRITE_EXTERNAL_STORAGE permission
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                downloadReports();
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        STORAGE_PERMISSION_CODE);
             }
-        });
+        }
     }
 
-    /**
-     * Generates a CSV file from the report list.
-     */
-    private File generateCsvFile(List<Report> reportList) {
-        File file = null;
-        FileWriter writer = null;
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                downloadReports();
+            } else {
+                Toast.makeText(this, "Storage permission denied. Cannot download reports.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == MANAGE_STORAGE_PERMISSION_CODE) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && Environment.isExternalStorageManager()) {
+                downloadReports();
+            } else {
+                Toast.makeText(this, "Storage access denied. Cannot download reports.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void downloadReports() {
+        if (currentReportList.isEmpty()) {
+            Toast.makeText(this, "No reports to download.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         try {
-            // Create a file in the Downloads directory
-            File downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+            File csvFile = generateCsvFile(currentReportList);
+            if (csvFile != null && csvFile.exists()) {
+                triggerDownload(csvFile);
+            } else {
+                Toast.makeText(this, "Failed to generate report file.", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Log.e("DownloadReports", "Error downloading reports: " + e.getMessage());
+            Toast.makeText(this, "Error downloading reports: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private File generateCsvFile(List<Report> reportList) throws IOException {
+        File file = null;
+        OutputStreamWriter writer = null;
+
+        try {
+            // Use getExternalFilesDir for better compatibility
+            File directory = new File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "Reports");
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
             String fileName = department + "_Report_" + System.currentTimeMillis() + ".csv";
-            file = new File(downloadsDir, fileName);
+            file = new File(directory, fileName);
 
-            writer = new FileWriter(file);
-
-            // Write the heading (Department Name + Report)
-            writer.append(department).append(" Report\n\n");
+            FileOutputStream fos = new FileOutputStream(file);
+            writer = new OutputStreamWriter(fos);
 
             // Write CSV header
-            writer.append("User ID,Name,Ticket Number,Action,Timestamp\n");
+            writer.append("User ID,Name,Ticket Number,Action,Timestamp,Department\n");
 
             // Write report data
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
             for (Report report : reportList) {
-                writer.append(report.getUserId()).append(",");
-                writer.append(report.getName()).append(",");
-                writer.append(report.getTicketNumber()).append(",");
-                writer.append(report.getAction()).append(",");
-                writer.append(new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date(report.getTimestamp()))).append("\n");
+                writer.append(escapeCsv(report.getUserId())).append(",");
+                writer.append(escapeCsv(report.getName())).append(",");
+                writer.append(escapeCsv(report.getTicketNumber())).append(",");
+                writer.append(escapeCsv(report.getAction())).append(",");
+                writer.append(escapeCsv(sdf.format(new Date(report.getTimestamp())))).append(",");
+                writer.append(escapeCsv(report.getDepartment())).append("\n");
             }
 
             writer.flush();
-            Toast.makeText(this, "Report saved to " + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
-        } catch (IOException e) {
-            Log.e("GenerateCsvFile", "Error generating CSV file: " + e.getMessage());
-            Toast.makeText(this, "Error generating CSV file", Toast.LENGTH_SHORT).show();
+            Log.d("GenerateCsvFile", "Report saved to: " + file.getAbsolutePath());
+
         } finally {
-            try {
-                if (writer != null) {
+            if (writer != null) {
+                try {
                     writer.close();
+                } catch (IOException e) {
+                    Log.e("GenerateCsvFile", "Error closing writer: " + e.getMessage());
                 }
-            } catch (IOException e) {
-                Log.e("GenerateCsvFile", "Error closing writer: " + e.getMessage());
             }
         }
         return file;
     }
 
-    /**
-     * Triggers the download of the file using Android's DownloadManager.
-     */
+    private String escapeCsv(String value) {
+        if (value == null) return "";
+        // Escape commas and quotes in CSV
+        if (value.contains(",") || value.contains("\"") || value.contains("\n")) {
+            return "\"" + value.replace("\"", "\"\"") + "\"";
+        }
+        return value;
+    }
+
     private void triggerDownload(File file) {
-        DownloadManager downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-        Uri fileUri = Uri.fromFile(file);
+        try {
+            DownloadManager downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+            Uri fileUri = Uri.fromFile(file);
 
-        DownloadManager.Request request = new DownloadManager.Request(fileUri)
-                .setTitle(department + " Report")
-                .setDescription("Downloading report file")
-                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, file.getName());
+            DownloadManager.Request request = new DownloadManager.Request(fileUri)
+                    .setTitle(department + " Report")
+                    .setDescription("Downloading report file")
+                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                    .setMimeType("text/csv")
+                    .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, file.getName());
 
-        downloadManager.enqueue(request);
+            downloadManager.enqueue(request);
+            Toast.makeText(this, "Download started. Check notifications for status.", Toast.LENGTH_LONG).show();
+
+        } catch (Exception e) {
+            Log.e("TriggerDownload", "Error triggering download: " + e.getMessage());
+            Toast.makeText(this, "Error starting download: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -31,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class chooseActivity extends AppCompatActivity {
+public class chooseActivity extends BaseActivity {
     private LinearLayout cardCreateAccount, cardDepositCash, cardWithdrawCash, cardCheckBalance, cardHelpdesk, cardOther;
     private Button btnDone;
     private DatabaseReference usersRef, queueRef;
@@ -115,6 +115,9 @@ public class chooseActivity extends AppCompatActivity {
                 return true;
             } else if (itemId == R.id.help) {
                 startActivity(new Intent(chooseActivity.this, helpActivity.class));
+                return true;
+            } else if (itemId == R.id.settings) {
+                startActivity(new Intent(chooseActivity.this, Settings.class));
                 return true;
             } else if (itemId == R.id.logout) {
                 showLogoutConfirmationDialog();

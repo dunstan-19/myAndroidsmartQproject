@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <uses-feature
         android:name="android.hardware.telephony"
@@ -22,7 +25,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hello"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Settings"
+            android:configChanges="locale|layoutDirection"
+            android:exported="false" />
         <activity
             android:name=".ReportActivity"
             android:exported="false" />
@@ -37,54 +46,61 @@
 
         <activity
             android:name=".ForgotPasswordActivity"
+            android:configChanges="locale|layoutDirection"
             android:exported="false" />
         <activity
             android:name=".QueueManagementActivity"
             android:exported="false" />
         <activity
             android:name=".helpActivity"
+            android:configChanges="locale|layoutDirection"
             android:exported="false" />
         <activity
             android:name=".QueueActivity"
+            android:configChanges="locale|layoutDirection"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"
+            android:configChanges="locale|layoutDirection"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false" />
         <activity
-            android:name=".cover"
+            android:name=".MyApplication"
+            android:exported="false" />
+        <activity
+            android:name="com.example.myapplication.cover"
+            android:configChanges="locale|layoutDirection"
             android:exported="true"
             android:theme="@style/LaunchTheme"
-            android:windowSoftInputMode="adjustResize" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".AdminActivity"
             android:exported="false" />
         <activity
             android:name=".chooseActivity"
+            android:configChanges="locale|layoutDirection"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".RegisterrActivity"
-            android:exported="false" />
-        <activity
-            android:name=".messageActivity"
+            android:configChanges="locale|layoutDirection"
             android:exported="false" />
         <activity
             android:name=".registerActivity"
+            android:configChanges="locale|layoutDirection"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:configChanges="locale|layoutDirection"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class helpActivity extends AppCompatActivity {
+public class helpActivity extends BaseActivity {
 
     private RecyclerView faqRecyclerView;
     private FAQAdapter faqAdapter;

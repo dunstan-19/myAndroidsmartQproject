@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">SmartQ</string>
+    <string name="select_service">Chagua huduma kujiunga na foleni</string>
+    <string name="create_account">Fungua Akaunti</string>
+    <string name="deposit_cash">Weka Fedha</string>
+    <string name="withdraw_cash">Toa Fedha</string>
+    <string name="check_balance">Angalia Salio</string>
+    <string name="helpdesk">Huduma kwa Wateja</string>
+    <string name="other">Nyingine</string>
+    <string name="language_changed">Lugha Imebadilishwa</string>
+    <string name="done">Maliza</string>
+    <string name="settings">Mipangilio</string>
+    <string name="language">Lugha</string>
+    <string name="english">Kiingereza</string>
+    <string name="swahili">Kiswahili</string>
+
+    <!-- settings activity -->
+    <string name="profile_settings">Mipangilio ya Wasifu</string>
+    <string name="update_profile_picture">~ Sasisha picha ya wasifu</string>
+    <string name="view_edit_profile">~ Tazama na hariri maelezo ya wasifu</string>
+    <string name="update_contact">~ Sasisha mawasiliano yaliyohifadhiwa</string>
+    <string name="update_password">Sasisha Nenosiri</string>
+    <string name="click_here">Bofya hapa kubadilisha nenosiri lako</string>
+    <string name="theme_display">Mandhari na Mwonekano</string>
+    <string name="dark_mode">Hali ya Giza</string>
+    <string name="font_size">Ukubwa wa Herufi</string>
+    <string name="small">Ndogo</string>
+    <string name="medium">Wastani</string>
+    <string name="large">Kubwa</string>
+
+    <string name="save">Hifadhi</string>
+
+    <!-- QueueActivity UI -->
+    <string name="hello_join_queue">Habari, %1$s! Umejiunga na foleni.</string>
+    <string name="ticket_number">Nambari yako ya tiketi ni</string>
+    <string name="current_queue">Foleni ya Sasa (Inapakia…)</string>
+    <string name="empty_queue">Foleni Tupu</string>
+    <string name="leave_queue">Ondoka Folenini</string>
+    <string name="join_queue">Ingia Foleni</string>
+    <string name="step_away">Jitokeze</string>
+    <string name="estimated_waiting_time">Muda Unaokadiriwa Kusubiri:</string>
+    <string name="im_back">Nimerudi</string>
+
+    <string name="about_smartq">Kuhusu SmartQ</string>
+    <string name="about_smartq_content">
+    SmartQ ni mfumo wa kidijitali wa kusimamia foleni ulioundwa kusaidia hospitali
+    na taasisi kusimamia foleni kwa ufanisi. Unapunguza muda wa kusubiri,
+    huboresha huduma kwa wateja, na hutoa masasisho ya moja kwa moja kwa watumiaji na wasimamizi.
+</string>
+    <string name="logout">Toka</string>
+
+</resources>

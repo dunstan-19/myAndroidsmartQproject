@@ -3,6 +3,9 @@ agp = "8.5.0"
 appcompatVersion = "1.4.0"
 compiler = "4.15.1"
 constraintlayoutVersion = "2.1.2"
+dotsindicatorVersion = "4.3"
+dotsindicator = "4.3"
+firebaseMessaging = "23.1.2"
 googleMaterial = "1.10.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -18,12 +21,22 @@ firebaseDatabase = "21.0.0"
 firebaseStorage = "21.0.1"
 materialVersion = "1.4.0"
 firebaseFunctions = "21.1.1"
+recyclerviewVersion = "1.4.0"
+viewpager2 = "1.1.0"
+lifecycleLivedataKtx = "2.9.2"
+lifecycleViewmodelKtx = "2.9.2"
+navigationFragment = "2.6.0"
+navigationUi = "2.6.0"
 
 [libraries]
 androidx-appcompat-v140 = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
 androidx-constraintlayout-v212 = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayoutVersion" }
+androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
+com-github-bumptech-glide-glide = { module = "com.github.bumptech.glide:glide", version.ref = "compiler" }
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
+dotsindicator = { module = "com.tbuonomo:dotsindicator", version.ref = "dotsindicator" }
 firebase-messaging = { module = "com.google.firebase:firebase-messaging", version.ref = "firebaseAuth" }
+firebase-messaging-v2312 = { module = "com.google.firebase:firebase-messaging", version.ref = "firebaseMessaging" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -38,6 +51,12 @@ firebase-storage = { group = "com.google.firebase", name = "firebase-storage", v
 material-v1100 = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
 material-v140 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 firebase-functions = { group = "com.google.firebase", name = "firebase-functions", version.ref = "firebaseFunctions" }
+recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerviewVersion" }
+tbuonomo-dotsindicator = { module = "com.tbuonomo:dotsindicator", version.ref = "dotsindicatorVersion" }
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
+androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

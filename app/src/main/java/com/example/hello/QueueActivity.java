@@ -12,6 +12,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Base64;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
@@ -46,7 +48,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class QueueActivity extends AppCompatActivity {
+public class QueueActivity extends BaseActivity {
     private LinearLayout QueueContainer;
     private DatabaseReference queueRef;
     private DatabaseReference usersRef;
@@ -224,19 +226,37 @@ public class QueueActivity extends AppCompatActivity {
     }
 
     private void updateCountdownText(long millisUntilFinished) {
-        long hours = millisUntilFinished / 1000 / 3600; // Convert milliseconds to hours
-        long minutes = (millisUntilFinished / 1000 % 3600) / 60; // Convert remaining milliseconds to minutes
-        long seconds = (millisUntilFinished / 1000) % 60; // Convert remaining milliseconds to seconds
+        long hours = millisUntilFinished / 1000 / 3600;
+        long minutes = (millisUntilFinished / 1000 % 3600) / 60;
+        long seconds = (millisUntilFinished / 1000) % 60;
 
-        String timeText;
-        if (hours > 0) {
-            // Display hours, minutes, and seconds if the wait time is more than 1 hour
-            timeText = String.format("Estimated Wait Time: %02d:%02d:%02d", hours, minutes, seconds);
-        } else {
-            // Display only minutes and seconds if the wait time is less than 1 hour
-            timeText = String.format("Estimated Wait Time: %02d:%02d", minutes, seconds);
-        }
+        // Always display hours with leading zeros
+        String timeText = String.format("⏱️ Estimated Wait Time: \n%02d:%02d:%02d", hours, minutes, seconds);
+
+        // Apply Roboto font from res/font folder
+        Typeface robotoRegular = ResourcesCompat.getFont(this, R.font.roboto);
+        Typeface robotoBold = ResourcesCompat.getFont(this, R.font.roboto);
+
+        WaitingTimeTextView.setTypeface(robotoBold);
         WaitingTimeTextView.setText(timeText);
+
+        // Increased font sizes and dynamic coloring
+        if (millisUntilFinished < 5 * 60 * 1000) {
+            WaitingTimeTextView.setTextColor(Color.RED);
+            WaitingTimeTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+        } else if (millisUntilFinished < 15 * 60 * 1000) {
+            WaitingTimeTextView.setTextColor(Color.parseColor("#FFA500"));
+            WaitingTimeTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        } else if (millisUntilFinished < 60 * 60 * 1000) {
+            WaitingTimeTextView.setTextColor(Color.parseColor("#2196F3"));
+            WaitingTimeTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19);
+        } else {
+            WaitingTimeTextView.setTextColor(Color.parseColor("#228B22"));
+            WaitingTimeTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        }
+
+        // Enhanced shadow
+        WaitingTimeTextView.setShadowLayer(4, 2, 2, Color.parseColor("#60000000"));
     }
 
     private void checkIfUserInQueue() {
@@ -247,7 +267,7 @@ public class QueueActivity extends AppCompatActivity {
                 if (isUserInQueue) {
                     String ticketNumber = dataSnapshot.child("ticketNumber").getValue(String.class);
                     if (ticketNumber != null) {
-                        ticketNumberTextView.setText("Your Ticket Number is " + ticketNumber);
+                        ticketNumberTextView.setText("Ticket Number " + ticketNumber);
                     }
                 }
                 updateButtons();
@@ -550,7 +570,7 @@ public class QueueActivity extends AppCompatActivity {
             startActivity(new Intent(this, helpActivity.class));
             return true;
         } else if (item.getItemId() == R.id.actionsettings) {
-            startActivity(new Intent(this, messageActivity.class));
+            startActivity(new Intent(this, Settings.class));
             return true;
         } else if (item.getItemId() == R.id.actionprofile) {
             startActivity(new Intent(this, ProfileActivity.class));

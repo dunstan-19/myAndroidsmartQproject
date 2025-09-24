@@ -4,9 +4,7 @@
 
     <corners android:radius="16dp"/>  <!-- Set corner radius -->
 
-    <solid android:color="@color/redcard"/>  <!-- Set background color -->
-
-    <stroke android:width="2dp" android:color="@android:color/black"/>  <!-- Optional: Border -->
+    <solid android:color="@color/lightyellow"/>  <!-- Set background color -->
 
     <padding android:left="8dp" android:top="8dp" android:right="8dp" android:bottom="8dp"/>
 </shape>

@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:com.tbuonomo="http://schemas.android.com/tools"
-    android:background="@drawable/hh"
+    android:background="@color/bg_blue"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/lightyellow"
         android:textStyle="bold"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/alcemodemo"
-        android:gravity="center"
         android:layout_marginVertical="50dp"
         android:text="SmartQ "
         android:textSize="37sp"/>
@@ -23,43 +24,56 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/blue"
+        android:textColor="@color/emerald"
         android:fontFamily="serif"
         android:layout_below="@id/textView1"
         android:gravity="center"
         android:text="SmartQ allows you to join, track, and leave queues in real time."
         android:textSize="20sp"/>
 
-    <!-- ViewPager2 for displaying images -->
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="420dp"
-        android:layout_marginTop="190dp"
-        android:layout_centerHorizontal="true" />
-
     <!-- Indicator for ViewPager2 -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="440dp"
+        android:backgroundTint="@color/card_blue"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp" />
+    </androidx.cardview.widget.CardView>
     <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
         android:id="@+id/dotsIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_below="@id/viewPager"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         app:dotsColor="@color/grey"
         app:dotsStrokeColor="@color/violet"
         app:dotsSize="10dp"
         app:dotsSpacing="6dp" />
 
-    <TextView
+    <Button
         android:id="@+id/textViewB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="serif"
-        android:textColor="@color/whiteblue"
         android:layout_marginStart="290dp"
-        android:layout_marginTop="685dp"
+        android:layout_marginTop="65dp"
+        android:fontFamily="serif"
         android:text="Get started "
-        android:textSize="20sp"/>
+        android:backgroundTint="@color/emerald"
+        android:textColor="@color/whiteblue"
+        android:textSize="20sp" />
 
-</RelativeLayout>
+</LinearLayout>

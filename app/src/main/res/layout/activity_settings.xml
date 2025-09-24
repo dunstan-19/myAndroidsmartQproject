@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whiteblue"
+    android:orientation="vertical">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="95sp"
+            android:layout_marginTop="30sp"
+            android:fontFamily="@font/merienda"
+            android:text="@string/settings"
+            android:textColor="@color/black"
+            android:textSize="27sp" />
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="100dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_height="32dp"
+        android:src="@drawable/baseline_arrow_back_24"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="-25dp"
+        />
+
+</RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/profile_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_corner_bg"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_marginEnd="20dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/baseline_person_settings">
+
+            </ImageView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_settings"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="5dp"
+                android:textSize="23dp"
+                android:fontFamily="@font/alcemodemo"
+                android:textColor="@color/blue">
+            </TextView>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/update_profile_picture"
+            android:textSize="16dp"
+            android:layout_marginStart="30dp"
+            android:textColor="@color/black">
+
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/view_edit_profile"
+            android:textSize="16dp"
+            android:layout_marginStart="30dp"
+            android:textColor="@color/black">
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/update_contact"
+            android:textSize="16dp"
+            android:layout_marginStart="30dp"
+            android:textColor="@color/black">
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_corner_bg"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_marginEnd="20dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/dark_mode">
+
+            </ImageView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alcemodemo"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/theme_display"
+            android:textColor="@color/blue"
+            android:textSize="23dp">
+        </TextView>
+        </RelativeLayout>
+
+        <Switch
+        android:id="@+id/switchTheme"
+        android:layout_marginStart="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dark_mode"
+        android:layout_marginTop="16dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/font_size"
+        android:layout_marginStart="30dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"/>
+
+    <RadioGroup
+        android:id="@+id/radioFontSize"
+        android:layout_width="match_parent"
+        android:layout_marginStart="30dp"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/fontSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/small" />
+
+        <RadioButton
+            android:id="@+id/fontMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/medium" />
+
+        <RadioButton
+            android:id="@+id/fontLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/large" />
+    </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_corner_bg"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_marginEnd="20dp">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/language">
+
+    </ImageView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alcemodemo"
+        android:text="@string/language"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/blue"
+        android:textSize="23dp">
+    </TextView>
+</RelativeLayout>
+        <Spinner
+        android:id="@+id/language_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/save_button"
+        android:backgroundTint="@color/emerald"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:layout_gravity="end"/>
+    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/update_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_corner_bg"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:layout_marginEnd="20dp">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/security">
+
+    </ImageView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alcemodemo"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/update_password"
+        android:textColor="@color/blue"
+        android:textSize="23dp">
+
+    </TextView>
+</RelativeLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/click_here"
+                android:textSize="16dp"
+                android:layout_marginStart="30dp"
+                android:textColor="@color/black">
+
+            </TextView>
+        </LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/aboutCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:elevation="6dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="12dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Header (clickable) -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/info">
+
+                        </ImageView>
+
+                        <TextView
+                            android:id="@+id/aboutHeader"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="23dp"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/alcemodemo"
+                            android:textColor="@color/blue"
+                            android:text="@string/about_smartq"
+                            />
+                    </RelativeLayout>
+
+
+                    <!-- Collapsible Content -->
+                    <TextView
+                        android:id="@+id/aboutContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_smartq_content"
+                        android:visibility="gone"
+                        android:paddingTop="8dp"
+                        android:textSize="16sp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/alcemodemo"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:paddingBottom="20dp"
+                android:text="@string/logout"
+                android:textColor="@color/violet"
+                android:textSize="23dp">
+            </TextView>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
