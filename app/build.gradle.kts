@@ -66,7 +66,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
-    implementation(project(":app"))
     annotationProcessor (libs.compiler)
     // Other dependencies
     implementation (libs.androidx.appcompat.v140)

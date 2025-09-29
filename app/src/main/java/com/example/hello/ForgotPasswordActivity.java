@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class ForgotPasswordActivity extends BaseActivity {
     private Button btnresetPassword;
     private TextView tvstatus, tvback;
     private FirebaseAuth mAuth;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class ForgotPasswordActivity extends BaseActivity {
         btnresetPassword = findViewById(R.id.btnresetPassword);
         tvstatus = findViewById(R.id.tvstatus);
         tvback = findViewById(R.id.tvback);
+        back = findViewById(R.id.back);
         mAuth = FirebaseAuth.getInstance();
         tvback.setOnClickListener(v -> {
             Intent intent = new Intent(ForgotPasswordActivity.this,MainActivity.class);
@@ -40,6 +43,11 @@ public class ForgotPasswordActivity extends BaseActivity {
             startActivity(intent);
 
     });
+        back.setOnClickListener(v -> {
+            Intent intent = new Intent(ForgotPasswordActivity.this,MainActivity.class);
+            startActivity(intent);
+
+        });
         btnresetPassword.setOnClickListener(v -> resetPassword());
     }
 
