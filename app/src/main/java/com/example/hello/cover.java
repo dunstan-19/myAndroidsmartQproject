@@ -53,7 +53,6 @@ public class cover extends AppCompatActivity {
             finish(); // Close the cover activity
         });
     }
-
     private void startAutoScroll() {
         final Handler handler = new Handler();
         final Runnable update = new Runnable() {

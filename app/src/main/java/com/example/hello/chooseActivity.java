@@ -7,9 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Base64;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -18,9 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -34,7 +30,7 @@ import java.util.Map;
 public class chooseActivity extends BaseActivity {
     private LinearLayout cardCreateAccount, cardDepositCash, cardWithdrawCash, cardCheckBalance, cardHelpdesk, cardOther;
     private Button btnDone;
-    private DatabaseReference usersRef, queueRef;
+    private DatabaseReference usersRef, queueRef, notificationsRef;
     private FirebaseAuth mAuth;
     private String selectedService = null;
     private LinearLayout lastSelectedCard = null;
@@ -58,6 +54,7 @@ public class chooseActivity extends BaseActivity {
         mAuth = FirebaseAuth.getInstance();
         usersRef = FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getCurrentUser().getUid());
         queueRef = FirebaseDatabase.getInstance().getReference("ServiceQueues");
+        notificationsRef = FirebaseDatabase.getInstance().getReference("Notifications");
 
         loadProfileImage();
 
@@ -105,6 +102,9 @@ public class chooseActivity extends BaseActivity {
         // Initialize BottomNavigationView
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         setupBottomNavigation();
+
+        // Check for new notifications
+        checkForNotifications();
     }
 
     private void setupBottomNavigation() {
@@ -121,6 +121,9 @@ public class chooseActivity extends BaseActivity {
                 return true;
             } else if (itemId == R.id.logout) {
                 showLogoutConfirmationDialog();
+                return true;
+            } else if (itemId == R.id.notification) {
+                startActivity(new Intent(chooseActivity.this, NotificationsActivity.class));
                 return true;
             }
             return false;
@@ -211,7 +214,8 @@ public class chooseActivity extends BaseActivity {
                         queueRef.child(serviceKey).child(userId).setValue(timestamp)
                                 .addOnCompleteListener(queueTask -> {
                                     if (queueTask.isSuccessful()) {
-                                        showConfirmationDialog(selectedService);
+                                        // Get user position in queue and create notification
+                                        getQueuePositionAndNotify(selectedService, serviceKey, userId);
                                     } else {
                                         Toast.makeText(chooseActivity.this, "Failed to join queue", Toast.LENGTH_SHORT).show();
                                     }
@@ -222,8 +226,39 @@ public class chooseActivity extends BaseActivity {
                 });
     }
 
-    private void showConfirmationDialog(final String selectedService) {
-        String message = "You have selected:\n• " + selectedService + "\n\nDo you want to proceed?";
+    private void getQueuePositionAndNotify(String selectedService, String serviceKey, String userId) {
+        queueRef.child(serviceKey).orderByValue().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                int position = 1;
+                boolean userFound = false;
+
+                for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                    if (userSnapshot.getKey().equals(userId)) {
+                        userFound = true;
+                        break;
+                    }
+                    position++;
+                }
+
+                if (userFound) {
+                    showConfirmationDialog(selectedService, position);
+                    // Create initial notification for the user
+                    createQueueNotification(userId, selectedService, position, "joined");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                showConfirmationDialog(selectedService, -1);
+            }
+        });
+    }
+
+    private void showConfirmationDialog(final String selectedService, int position) {
+        String message = "You have selected:\n• " + selectedService +
+                "\n\nYour position in queue: " + position +
+                "\n\nDo you want to proceed?";
 
         new AlertDialog.Builder(this)
                 .setTitle("Confirm Selection")
@@ -239,6 +274,49 @@ public class chooseActivity extends BaseActivity {
         startActivity(intent);
     }
 
+    private void createQueueNotification(String userId, String service, int position, String type) {
+        String notificationId = notificationsRef.child(userId).push().getKey();
+        Map<String, Object> notification = new HashMap<>();
+        notification.put("title", "Queue Update");
+        notification.put("message", "You are position " + position + " in " + service + " queue");
+        notification.put("service", service);
+        notification.put("position", position);
+        notification.put("timestamp", System.currentTimeMillis());
+        notification.put("read", false);
+        notification.put("type", type);
+
+        notificationsRef.child(userId).child(notificationId).setValue(notification);
+    }
+
+    private void checkForNotifications() {
+        String userId = mAuth.getCurrentUser().getUid();
+        notificationsRef.child(userId).orderByChild("read").equalTo(false)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            for (DataSnapshot notificationSnapshot : snapshot.getChildren()) {
+                                Notification notification = notificationSnapshot.getValue(Notification.class);
+                                if (notification != null && !notification.isRead()) {
+                                    showNotificationToast(notification);
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        Log.e("Notifications", "Error loading notifications: " + error.getMessage());
+                    }
+                });
+
+    }
+
+    private void showNotificationToast(Notification notification) {
+        String message = notification.getMessage();
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -246,5 +324,7 @@ public class chooseActivity extends BaseActivity {
         bottomNavigationView.setSelectedItemId(R.id.home);
         // Refresh profile image when returning to activity
         loadProfileImage();
+        // Check for new notifications
+        checkForNotifications();
     }
 }

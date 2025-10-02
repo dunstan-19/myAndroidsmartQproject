@@ -26,6 +26,9 @@
         android:theme="@style/Theme.Hello"
         tools:targetApi="31">
         <activity
+            android:name=".NotificationsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChangePasswordActivity"
             android:exported="false" />
         <activity
@@ -35,7 +38,10 @@
         <activity
             android:name=".ReportActivity"
             android:exported="false" />
-
+        <service
+            android:name=".QueueNotificationService"
+            android:enabled="true"
+            android:exported="false" />
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
@@ -70,7 +76,7 @@
             android:name=".MyApplication"
             android:exported="false" />
         <activity
-            android:name="com.example.myapplication.cover"
+            android:name=".cover"
             android:configChanges="locale|layoutDirection"
             android:exported="true"
             android:theme="@style/LaunchTheme"
