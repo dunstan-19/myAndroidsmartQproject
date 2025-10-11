@@ -3,11 +3,26 @@ package com.example.hello;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
+import android.util.Log;
+
 import androidx.core.app.NotificationCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
+    private static final String TAG = "MyFirebaseMsgService";
+
+    @Override
+    public void onNewToken(String token) {
+        Log.d(TAG, "Refreshed token: " + token);
+        // Save the new token to your database
+        sendRegistrationToServer(token);
+    }
+
+    private void sendRegistrationToServer(String token) {
+        // Implement this to save the token to your database
+    }
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         if (remoteMessage.getNotification() != null) {

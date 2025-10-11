@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -26,6 +28,9 @@
         android:theme="@style/Theme.Hello"
         tools:targetApi="31">
         <activity
+            android:name=".QpointsActivity"
+            android:exported="false" />
+        <activity
             android:name=".NotificationsActivity"
             android:exported="false" />
         <activity
@@ -39,16 +44,27 @@
             android:name=".ReportActivity"
             android:exported="false" />
         <service
-            android:name=".QueueNotificationService"
-            android:enabled="true"
-            android:exported="false" />
-        <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="queue_updates" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/letter" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/whiteblue" />
+        <service
+            android:name=".QueueNotificationService"
+            android:enabled="true"
+            android:exported="false" />
+
 
         <activity
             android:name=".ForgotPasswordActivity"

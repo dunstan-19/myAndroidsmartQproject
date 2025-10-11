@@ -3,18 +3,23 @@ package com.example.hello;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,6 +33,7 @@ public class NotificationsActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ImageView emptyStateImage;
     private TextView emptyStateText;
+    private Button btnClearNotifications;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,7 @@ public class NotificationsActivity extends AppCompatActivity {
         notificationsRecyclerView = findViewById(R.id.notificationsRecyclerView);
         emptyStateImage = findViewById(R.id.emptyStateImage);
         emptyStateText = findViewById(R.id.emptyStateText);
+        btnClearNotifications = findViewById(R.id.btnClearNotifications);
 
         // Setup RecyclerView
         notificationList = new ArrayList<>();
@@ -51,7 +58,10 @@ public class NotificationsActivity extends AppCompatActivity {
         // Load notifications
         loadNotifications();
 
-        // Setup back button
+        // Clear notifications button
+        btnClearNotifications.setOnClickListener(v -> clearAllNotifications());
+
+        // Back button
         findViewById(R.id.backButton).setOnClickListener(v -> finish());
     }
 
@@ -72,12 +82,8 @@ public class NotificationsActivity extends AppCompatActivity {
                             }
 
                             // Sort by timestamp (newest first)
-                            Collections.sort(notificationList, new Comparator<Notification>() {
-                                @Override
-                                public int compare(Notification n1, Notification n2) {
-                                    return Long.compare(n2.getTimestamp(), n1.getTimestamp());
-                                }
-                            });
+                            Collections.sort(notificationList, (n1, n2) ->
+                                    Long.compare(n2.getTimestamp(), n1.getTimestamp()));
 
                             notificationAdapter.notifyDataSetChanged();
                             showEmptyState(false);
@@ -99,17 +105,31 @@ public class NotificationsActivity extends AppCompatActivity {
             emptyStateImage.setVisibility(View.VISIBLE);
             emptyStateText.setVisibility(View.VISIBLE);
             notificationsRecyclerView.setVisibility(View.GONE);
+            btnClearNotifications.setVisibility(View.GONE);
         } else {
             emptyStateImage.setVisibility(View.GONE);
             emptyStateText.setVisibility(View.GONE);
             notificationsRecyclerView.setVisibility(View.VISIBLE);
+            btnClearNotifications.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void clearAllNotifications() {
+        String userId = mAuth.getCurrentUser().getUid();
+        notificationsRef.child(userId).removeValue()
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, "All notifications cleared", Toast.LENGTH_SHORT).show();
+                    notificationList.clear();
+                    notificationAdapter.notifyDataSetChanged();
+                    showEmptyState(true);
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Failed to clear notifications", Toast.LENGTH_SHORT).show());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Mark all notifications as read when user views them
         markAllAsRead();
     }
 

@@ -125,7 +125,7 @@
         <LinearLayout
             android:id="@+id/QueueContainer"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:background="@drawable/card_blue_corner"
             android:layout_marginTop="20dp"
             android:orientation="horizontal" />
@@ -139,7 +139,7 @@
         android:id="@+id/JoinQueueButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="60dp"
         android:text="@string/join_queue"
         />
 
@@ -147,11 +147,20 @@
         android:id="@+id/LeaveQueueButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="@color/violet"
         android:text="@string/leave_queue"
         />
-    </RelativeLayout>
+
+    <Button
+        android:id="@+id/PriorityJoinButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/blue"
+        android:text="Priority Join"
+        android:textColor="#FFFFFF" />
+</RelativeLayout>
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -162,7 +171,7 @@
         android:id="@+id/StepAwayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="@color/emerald"
         android:text="@string/step_away"
 
@@ -174,7 +183,7 @@
         android:id="@+id/ReturnButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="@color/emerald"
         android:text="@string/im_back"
         app:layout_constraintEnd_toEndOf="parent"
@@ -186,7 +195,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="38dp"
         android:fontFamily="@font/alcemodemo"
         android:text="@string/estimated_waiting_time"
         android:textColor="@color/emerald"
@@ -200,7 +209,7 @@
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginStart="150sp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/WaitingTimeTextView"
         app:lottie_autoPlay="true"
@@ -212,7 +221,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="150dp"
         android:background="@color/whiteblue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lLoading"

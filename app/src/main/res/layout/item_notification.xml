@@ -7,6 +7,7 @@
     android:padding="16dp"
     android:layout_margin="4dp">
 
+
     <!-- Unread Indicator -->
     <View
         android:id="@+id/unreadIndicator"

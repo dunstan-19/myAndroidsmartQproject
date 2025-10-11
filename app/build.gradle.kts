@@ -57,10 +57,15 @@ dependencies {
     implementation ("com.google.firebase:firebase-bom:32.1.0")
     implementation ("com.google.firebase:firebase-auth")
 
+        implementation ("androidx.core:core:1.9.0")
+        implementation ("androidx.core:core-ktx:1.9.0")
+
     implementation ("com.squareup.okhttp3:okhttp:4.9.0" )  // For networking
     implementation ("org.simpleframework:simple-xml:2.7.1") // For XML parsing
 
     implementation ("com.github.bumptech.glide:glide:4.15.1")
+    implementation ("com.google.firebase:firebase-messaging:23.3.1")
+
     implementation(libs.firebase.functions)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)

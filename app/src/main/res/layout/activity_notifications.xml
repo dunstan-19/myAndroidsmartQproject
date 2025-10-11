@@ -38,6 +38,16 @@
             android:layout_height="48dp" />
 
     </LinearLayout>
+    <Button
+        android:id="@+id/btnClearNotifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear All"
+        android:layout_gravity="end"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/violet"
+        android:textColor="@android:color/white"
+        android:drawablePadding="8dp"/>
 
     <!-- Notifications List -->
     <androidx.recyclerview.widget.RecyclerView
